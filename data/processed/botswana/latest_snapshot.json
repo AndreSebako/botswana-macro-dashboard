@@ -1,0 +1,99 @@
+{
+  "inflation": {
+    "slug": "inflation",
+    "title": "Inflation Rate",
+    "source": "Statistics Botswana",
+    "unit": "%",
+    "latest_date": "2026-02-01",
+    "latest_value": 4.0,
+    "previous_date": "2026-01-01",
+    "previous_value": 3.7,
+    "delta": 0.2999999999999998,
+    "tone": "negative"
+  },
+  "exchange_rate": {
+    "slug": "exchange_rate",
+    "title": "BWP / USD",
+    "source": "Twelve Data",
+    "unit": "",
+    "latest_date": "2026-04-13",
+    "latest_value": 13.40421,
+    "previous_date": "2026-04-12",
+    "previous_value": 13.40421,
+    "delta": 0.0,
+    "tone": "neutral"
+  },
+  "gdp": {
+    "slug": "gdp",
+    "title": "Real GDP Growth",
+    "source": "Statistics Botswana",
+    "unit": "%",
+    "latest_date": "2025-12-31",
+    "latest_value": 2.6,
+    "previous_date": "2025-09-30",
+    "previous_value": 2.5,
+    "delta": 0.10000000000000009,
+    "tone": "positive"
+  },
+  "trade_balance": {
+    "slug": "trade_balance",
+    "title": "Trade Balance",
+    "source": "Statistics Botswana",
+    "unit": "bn BWP",
+    "latest_date": "2026-02-01",
+    "latest_value": -1.2,
+    "previous_date": "2026-01-01",
+    "previous_value": -1.0,
+    "delta": -0.19999999999999996,
+    "tone": "negative"
+  },
+  "policy_rate": {
+    "slug": "policy_rate",
+    "title": "Monetary Policy Rate",
+    "source": "Bank of Botswana",
+    "unit": "%",
+    "latest_date": "2026-02-28",
+    "latest_value": 3.5,
+    "previous_date": "2026-01-31",
+    "previous_value": 3.5,
+    "delta": 0.0,
+    "tone": "neutral"
+  },
+  "prime_lending_rate": {
+    "slug": "prime_lending_rate",
+    "title": "Average Prime Lending Rate",
+    "source": "Bank of Botswana",
+    "unit": "%",
+    "latest_date": "2026-02-28",
+    "latest_value": 7.19,
+    "previous_date": "2026-01-31",
+    "previous_value": 7.19,
+    "delta": 0.0,
+    "tone": "neutral"
+  },
+  "real_policy_rate": {
+    "slug": "real_policy_rate",
+    "title": "Real Policy Rate",
+    "source": "Derived: Policy Rate - Inflation",
+    "unit": "%",
+    "latest_date": "2026-02-28",
+    "latest_value": -0.5,
+    "previous_date": "2026-01-31",
+    "previous_value": -0.2,
+    "delta": -0.3,
+    "tone": "neutral"
+  },
+  "real_prime_lending_rate": {
+    "slug": "real_prime_lending_rate",
+    "title": "Real Prime Lending Rate",
+    "source": "Derived: Prime Lending Rate - Inflation",
+    "unit": "%",
+    "latest_date": "2026-02-28",
+    "latest_value": 3.19,
+    "previous_date": "2026-01-31",
+    "previous_value": 3.49,
+    "delta": -0.30000000000000027,
+    "tone": "neutral"
+  },
+  "last_updated": "2026-04-16T22:55:07.105864"
+}
