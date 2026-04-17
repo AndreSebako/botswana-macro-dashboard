@@ -6,6 +6,8 @@ type Point = {
   value: number;
 };
 
+type Tone = "positive" | "negative" | "neutral";
+
 type SnapshotEntry = {
   slug: string;
   title: string;
@@ -16,7 +18,7 @@ type SnapshotEntry = {
   previous_date: string | null;
   previous_value: number | null;
   delta: number | null;
-  tone: "positive" | "negative" | "neutral";
+  tone: Tone;
 };
 
 type SnapshotFile = {
@@ -39,9 +41,43 @@ type RegimeSummary = {
   explanation: string;
 };
 
+type CardItem = {
+  title: string;
+  value: string;
+  source: string;
+  footnote: string;
+  changeText: string;
+  tone?: Tone;
+};
+
+type CardMap = {
+  inflation: CardItem;
+  exchange_rate: CardItem;
+  gdp: CardItem;
+  trade_balance: CardItem;
+  policy_rate: CardItem;
+  prime_lending_rate: CardItem;
+  real_policy_rate: CardItem;
+  real_prime_lending_rate: CardItem;
+};
+
+type DashboardSeriesItem = {
+  slug: string;
+  title: string;
+  source: string;
+  updatedAt: string;
+  latestValue: string;
+  latestLabel: string;
+  points: Point[];
+  showZeroLine: boolean;
+  tone?: Tone;
+};
+
 function readJson<T>(filename: string): T | null {
   const filePath = path.join(process.cwd(), "data", "processed", "botswana", filename);
+
   if (!fs.existsSync(filePath)) return null;
+
   return JSON.parse(fs.readFileSync(filePath, "utf-8")) as T;
 }
 
@@ -61,6 +97,7 @@ function formatValue(slug: string, value: number | null): string {
 
   if (slug === "exchange_rate") return `${value}`;
   if (slug === "trade_balance") return `${value} bn`;
+
   return `${value}`;
 }
 
@@ -74,11 +111,11 @@ function formatChangeText(entry: SnapshotEntry): string {
   return `vs previous: ${sign}${entry.delta.toFixed(2)}`;
 }
 
-export function getBotswanaSnapshot() {
+export function getBotswanaSnapshot(): SnapshotFile | null {
   return readJson<SnapshotFile>("latest_snapshot.json");
 }
 
-export function getBotswanaDashboardSeries() {
+export function getBotswanaDashboardSeries(): DashboardSeriesItem[] {
   const snapshot = getBotswanaSnapshot();
   if (!snapshot) return [];
 
@@ -91,14 +128,14 @@ export function getBotswanaDashboardSeries() {
   const realPolicyRate = readJson<Point[]>("real_policy_rate.json") ?? [];
   const realPrimeLendingRate = readJson<Point[]>("real_prime_lending_rate.json") ?? [];
 
-  const fxTone =
+  const fxTone: Tone =
     snapshot.exchange_rate.delta === null
       ? "neutral"
       : snapshot.exchange_rate.delta < 0
-      ? "positive"
-      : snapshot.exchange_rate.delta > 0
-      ? "negative"
-      : "neutral";
+        ? "positive"
+        : snapshot.exchange_rate.delta > 0
+          ? "negative"
+          : "neutral";
 
   return [
     {
@@ -183,7 +220,10 @@ export function getBotswanaDashboardSeries() {
       title: "Real Prime Lending Rate",
       source: snapshot.real_prime_lending_rate.source,
       updatedAt: formatDateLabel(snapshot.real_prime_lending_rate.latest_date),
-      latestValue: formatValue("real_prime_lending_rate", snapshot.real_prime_lending_rate.latest_value),
+      latestValue: formatValue(
+        "real_prime_lending_rate",
+        snapshot.real_prime_lending_rate.latest_value
+      ),
       latestLabel: "prime lending rate minus inflation",
       points: realPrimeLendingRate,
       showZeroLine: true,
@@ -192,18 +232,18 @@ export function getBotswanaDashboardSeries() {
   ];
 }
 
-export function getBotswanaCardData() {
+export function getBotswanaCardData(): CardMap | null {
   const snapshot = getBotswanaSnapshot();
   if (!snapshot) return null;
 
-  const fxTone =
+  const fxTone: Tone =
     snapshot.exchange_rate.delta === null
       ? "neutral"
       : snapshot.exchange_rate.delta < 0
-      ? "positive"
-      : snapshot.exchange_rate.delta > 0
-      ? "negative"
-      : "neutral";
+        ? "positive"
+        : snapshot.exchange_rate.delta > 0
+          ? "negative"
+          : "neutral";
 
   return {
     inflation: {
@@ -264,7 +304,10 @@ export function getBotswanaCardData() {
     },
     real_prime_lending_rate: {
       title: "Real prime lending rate",
-      value: formatValue("real_prime_lending_rate", snapshot.real_prime_lending_rate.latest_value),
+      value: formatValue(
+        "real_prime_lending_rate",
+        snapshot.real_prime_lending_rate.latest_value
+      ),
       source: snapshot.real_prime_lending_rate.source,
       footnote: formatDateLabel(snapshot.real_prime_lending_rate.latest_date),
       changeText: formatChangeText(snapshot.real_prime_lending_rate),
@@ -282,6 +325,7 @@ export function getBotswanaMacroRegime(): RegimeSummary | null {
   const gdp = snapshot.gdp.latest_value;
   const trade = snapshot.trade_balance.latest_value;
   const realPolicyRate = snapshot.real_policy_rate.latest_value;
+  const realPrimeRate = snapshot.real_prime_lending_rate.latest_value;
 
   if (inflation === null || gdp === null) return null;
 
@@ -312,12 +356,19 @@ export function getBotswanaMacroRegime(): RegimeSummary | null {
     };
   }
 
-  if (realPolicyRate !== null && realPolicyRate > 0 && inflation <= 4 && gdp > 1.5) {
+  if (
+    realPolicyRate !== null &&
+    realPolicyRate > 0 &&
+    realPrimeRate !== null &&
+    realPrimeRate > 0 &&
+    inflation <= 4 &&
+    gdp > 1.5
+  ) {
     return {
       label: "Tight Policy / Stabilizing",
       tone: "positive",
       explanation:
-        "Real policy settings are positive while inflation is comparatively contained, which suggests a stabilizing macro environment.",
+        "Both real policy and real lending rates are positive while inflation is comparatively contained, which suggests tighter financial conditions and a stabilizing macro environment.",
     };
   }
 

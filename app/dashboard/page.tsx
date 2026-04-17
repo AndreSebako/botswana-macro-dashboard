@@ -66,6 +66,8 @@ export default function DashboardPage() {
   <StatCard {...cards.trade_balance} />
   <StatCard {...cards.policy_rate} />
   <StatCard {...cards.prime_lending_rate} />
+  <StatCard {...cards.real_policy_rate} />
+  <StatCard {...cards.real_prime_lending_rate} />
 </section>
 
       <div className="mt-12 max-w-3xl rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm text-emerald-100">
