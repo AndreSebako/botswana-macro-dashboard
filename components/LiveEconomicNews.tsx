@@ -16,14 +16,33 @@ type NewsResponse = {
 };
 
 async function getNews(): Promise<NewsResponse> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-  const res = await fetch(`${baseUrl}/api/news`, {
-    cache: "no-store",
-  });
+  try {
+    const res = await fetch(`${baseUrl}/api/news`, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return {
+        updatedAt: new Date().toISOString(),
+        botswana: [],
+        imf: [],
+        imfAvailable: false,
+        error: "Failed to load news.",
+      };
+    }
+
+    const data = await res.json();
+
+    return {
+      updatedAt: data.updatedAt || new Date().toISOString(),
+      botswana: Array.isArray(data.botswana) ? data.botswana : [],
+      imf: Array.isArray(data.imf) ? data.imf : [],
+      imfAvailable: Boolean(data.imfAvailable),
+      error: data.error,
+    };
+  } catch {
     return {
       updatedAt: new Date().toISOString(),
       botswana: [],
@@ -32,17 +51,15 @@ async function getNews(): Promise<NewsResponse> {
       error: "Failed to load news.",
     };
   }
-
-  return res.json();
 }
 
 function NewsBlock({
   title,
-  items,
+  items = [],
   emptyMessage,
 }: {
   title: string;
-  items: NewsItem[];
+  items?: NewsItem[];
   emptyMessage: string;
 }) {
   return (
