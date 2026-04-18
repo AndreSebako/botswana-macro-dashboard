@@ -1,5 +1,4 @@
 import Parser from "rss-parser";
-import * as cheerio from "cheerio";
 
 type NewsItem = {
   title: string;
@@ -36,6 +35,8 @@ function isLowValueHeadline(item: NewsItem) {
     "sports",
     "relay",
     "athletics",
+    "dialogue",
+    "conference",
   ];
 
   return blockedPatterns.some(
@@ -118,63 +119,27 @@ async function getGoogleNewsItems(): Promise<NewsItem[]> {
 
 async function getImfNewsItems(): Promise<NewsItem[]> {
   try {
-    const res = await fetch("https://www.imf.org/en/news", {
-      next: { revalidate: 3600 },
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        Accept:
-          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-        Referer: "https://www.google.com/",
-      },
-    });
+    const feed = await parser.parseURL("https://www.imf.org/en/News/RSS");
 
-    if (!res.ok) {
-      console.warn(`IMF news fetch skipped: ${res.status}`);
-      return [];
-    }
-
-    const html = await res.text();
-    const $ = cheerio.load(html);
-
-    const items: NewsItem[] = [];
-
-    $("a").each((_, el) => {
-      if (items.length >= 6) return false;
-
-      const href = $(el).attr("href") || "";
-      const text = $(el).text().trim();
-
-      if (!href || !text) return;
-      if (!href.includes("/en/News/")) return;
-      if (text.length < 20) return;
-
-      const absoluteHref = href.startsWith("http")
-        ? href
-        : `https://www.imf.org${href}`;
-
+    const mapped: NewsItem[] = (feed.items ?? []).map((item) => {
       const mappedItem: NewsItem = {
-        title: text,
-        summary: "Latest IMF news item from the official IMF news page.",
+        title: item.title ?? "Untitled",
+        summary: cleanText(item.contentSnippet || item.content || item.summary),
         source: "IMF",
-        href: absoluteHref,
+        href: item.link ?? "#",
+        publishedAt: item.pubDate,
         category: "IMF",
       };
 
-      items.push({
+      return {
         ...mappedItem,
         signal: classifySignal(mappedItem),
-      });
+      };
     });
 
-    const unique = Array.from(
-      new Map(items.map((item) => [item.href, item])).values()
-    );
-
-    return unique.slice(0, 6);
+    return mapped.slice(0, 6);
   } catch (error) {
-    console.warn("IMF news fetch skipped:", error);
+    console.warn("IMF RSS failed:", error);
     return [];
   }
 }
