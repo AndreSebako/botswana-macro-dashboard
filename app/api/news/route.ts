@@ -8,6 +8,7 @@ type NewsItem = {
   href: string;
   publishedAt?: string;
   category: "Botswana" | "IMF" | "Regional" | "Global";
+  signal?: string;
 };
 
 const parser = new Parser();
@@ -30,6 +31,11 @@ function isLowValueHeadline(item: NewsItem) {
     "world athletics",
     "open day",
     "civil society organisation",
+    "student",
+    "graduates",
+    "sports",
+    "relay",
+    "athletics",
   ];
 
   return blockedPatterns.some(
@@ -40,25 +46,74 @@ function isLowValueHeadline(item: NewsItem) {
   );
 }
 
+function isMacroRelevant(item: NewsItem) {
+  const text = `${item.title} ${item.summary}`.toLowerCase();
+
+  const keywords = [
+    "inflation",
+    "gdp",
+    "growth",
+    "interest rate",
+    "central bank",
+    "bank of botswana",
+    "statistics botswana",
+    "fiscal",
+    "budget",
+    "exports",
+    "imports",
+    "trade",
+    "diamond",
+    "mining",
+    "policy",
+    "currency",
+  ];
+
+  return keywords.some((k) => text.includes(k));
+}
+
+function classifySignal(item: NewsItem): string {
+  const text = `${item.title} ${item.summary}`.toLowerCase();
+
+  if (text.includes("inflation") || text.includes("rate hike")) return "Hawkish";
+  if (text.includes("growth") || text.includes("expansion")) return "Growth";
+  if (text.includes("risk") || text.includes("downturn")) return "Risk";
+  if (text.includes("trade") || text.includes("exports") || text.includes("imports")) {
+    return "External";
+  }
+  if (text.includes("budget") || text.includes("fiscal")) return "Fiscal";
+
+  return "Neutral";
+}
+
 async function getGoogleNewsItems(): Promise<NewsItem[]> {
   const query = encodeURIComponent(
-    '"Botswana" AND ("inflation" OR "GDP" OR "economy" OR "Bank of Botswana" OR "Statistics Botswana" OR "trade balance" OR "policy rate" OR "budget" OR "diamond exports" "Business Insider Africa")'
+    '"Botswana" AND ("inflation" OR "GDP" OR "economy" OR "Bank of Botswana" OR "Statistics Botswana" OR "trade balance" OR "policy rate" OR "budget" OR "diamond exports")'
   );
 
   const rssUrl = `https://news.google.com/rss/search?q=${query}&hl=en-GB&gl=BW&ceid=BW:en`;
 
   const feed = await parser.parseURL(rssUrl);
 
-  const mapped = (feed.items ?? []).map((item) => ({
-    title: item.title ?? "Untitled",
-    summary: cleanText(item.contentSnippet || item.content || item.summary),
-    source: "Google News",
-    href: item.link ?? "#",
-    publishedAt: item.pubDate,
-    category: "Botswana" as const,
-  }));
+  const mapped: NewsItem[] = (feed.items ?? []).map((item) => {
+    const mappedItem: NewsItem = {
+      title: item.title ?? "Untitled",
+      summary: cleanText(item.contentSnippet || item.content || item.summary),
+      source: "Google News",
+      href: item.link ?? "#",
+      publishedAt: item.pubDate,
+      category: "Botswana",
+    };
 
-  return mapped.filter((item) => !isLowValueHeadline(item)).slice(0, 8);
+    return {
+      ...mappedItem,
+      signal: classifySignal(mappedItem),
+    };
+  });
+
+  return mapped
+    .filter((item) => !isLowValueHeadline(item))
+    .filter((item) => isMacroRelevant(item))
+    .slice(0, 8);
 }
 
 async function getImfNewsItems(): Promise<NewsItem[]> {
@@ -99,12 +154,17 @@ async function getImfNewsItems(): Promise<NewsItem[]> {
         ? href
         : `https://www.imf.org${href}`;
 
-      items.push({
+      const mappedItem: NewsItem = {
         title: text,
         summary: "Latest IMF news item from the official IMF news page.",
         source: "IMF",
         href: absoluteHref,
         category: "IMF",
+      };
+
+      items.push({
+        ...mappedItem,
+        signal: classifySignal(mappedItem),
       });
     });
 
