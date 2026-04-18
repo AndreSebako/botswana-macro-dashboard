@@ -4,31 +4,39 @@ export type NewsItem = {
   source: string;
   href: string;
   external?: boolean;
+  category?: string;
+  date?: string;
 };
 
 export const newsItems: NewsItem[] = [
   {
     title: "Inflation release watch",
     summary:
-      "Track the next Statistics Botswana CPI publication and update the monthly macro note once the release prints.",
+      "Track the next Statistics Botswana CPI publication and update the inflation note when the release prints.",
     source: "Statistics Botswana",
     href: "/analysis/botswana-inflation-dynamics",
     external: false,
+    category: "Inflation",
+    date: "Ongoing",
   },
   {
     title: "Bank of Botswana policy signals",
     summary:
-      "Watch central bank communication for changes in inflation commentary, policy stance, and exchange-rate conditions.",
+      "Monitor policy-rate communication, inflation commentary, and forward-looking guidance from the central bank.",
     source: "Bank of Botswana",
     href: "/analysis/botswana-growth-regime-and-macro-risks",
     external: false,
+    category: "Monetary Policy",
+    date: "Ongoing",
   },
   {
     title: "Trade and external sector monitor",
     summary:
-      "Follow monthly trade releases for signs of improving exports, import compression, or widening external pressure.",
+      "Follow trade balance releases for signs of stronger exports, import compression, or external pressure.",
     source: "Statistics Botswana",
     href: "/analysis/botswana-external-balance-and-trade-outlook",
     external: false,
+    category: "External Sector",
+    date: "Ongoing",
   },
 ];

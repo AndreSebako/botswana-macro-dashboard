@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MacroSnapshot } from "@/components/MacroSnapshot";
-import { EconomicNews } from "@/components/EconomicNews";
+import { LiveEconomicNews } from "@/components/LiveEconomicNews";
 import snapshot from "@/data/processed/botswana/latest_snapshot.json";
 import { classifyRegime } from "@/lib/macro-regime";
 
@@ -188,26 +188,26 @@ export default function HomePage() {
 
       <MacroSnapshot />
 
-      <section className="mt-12 grid gap-6 lg:grid-cols-2">
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-          <h2 className="text-3xl font-semibold text-white">What this site is</h2>
-          <div className="mt-6 space-y-5 text-slate-300 leading-8">
-            <p>A Botswana macro and analytics portal with two layers:</p>
-            <p>
-              <span className="font-semibold text-white">Layer 1:</span> a public macro dashboard for GDP,
-              inflation, exchange rates, trade balance, labour market indicators, and
-              other high-frequency releases.
-            </p>
-            <p>
-              <span className="font-semibold text-white">Layer 2:</span> an analysis product that explains
-              what changed, what risks matter most, and whether Botswana is overheating,
-              slowing, or stabilizing.
-            </p>
-          </div>
-        </div>
+     <section className="mt-12 grid gap-6 lg:grid-cols-2">
+  <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
+    <h2 className="text-3xl font-semibold text-white">What this site is</h2>
+    <div className="mt-6 space-y-5 text-slate-300 leading-8">
+      <p>A Botswana macro and analytics portal with two layers:</p>
+      <p>
+        <span className="font-semibold text-white">Layer 1:</span> a public macro dashboard for GDP,
+        inflation, exchange rates, trade balance, labour market indicators, and
+        other high-frequency releases.
+      </p>
+      <p>
+        <span className="font-semibold text-white">Layer 2:</span> an analysis product that explains
+        what changed, what risks matter most, and whether Botswana is overheating,
+        slowing, or stabilizing.
+      </p>
+    </div>
+  </div>
 
-        <EconomicNews />
-      </section>
+  <LiveEconomicNews />
+</section>
     </main>
   );
 }
