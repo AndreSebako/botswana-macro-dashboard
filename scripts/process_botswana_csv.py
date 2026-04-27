@@ -19,6 +19,12 @@ SERIES_CONFIG = {
         "unit": "%",
         "change_rule": "lower_is_better",
     },
+        "unemployment_rate": {
+        "source": "Statistics Botswana",
+        "title": "Unemployment Rate",
+        "unit": "%",
+        "change_rule": "lower_is_better",
+    },
     "exchange_rate": {
         "source": "Twelve Data",
         "title": "BWP / USD",
@@ -214,6 +220,7 @@ def main() -> None:
 
     base_series_names = [
         "inflation",
+        "unemployment_rate",
         "exchange_rate",
         "gdp",
         "trade_balance",

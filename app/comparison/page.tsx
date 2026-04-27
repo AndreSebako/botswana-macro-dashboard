@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ComparisonLineChart } from "@/components/ComparisonLineChart";
+import { ComparisonBarChart } from "@/components/ComparisonBarChart";
 
 type SeriesPoint = {
   date: string;
@@ -24,6 +25,7 @@ type ComparisonApiResponse = {
   inflation: IndicatorBlock;
   gdpGrowth: IndicatorBlock;
   tradeBalance: IndicatorBlock;
+  unemployment: IndicatorBlock;
   error?: string;
 };
 
@@ -130,9 +132,14 @@ export default function ComparisonPage() {
     selectedCountries.includes(country.code)
   );
 
+  const filteredUnemployment = data.unemployment.countries.filter((country) =>
+    selectedCountries.includes(country.code)
+  );
+
   const inflationGap = computeLatestGap(filteredInflation);
   const gdpGap = computeLatestGap(filteredGDP);
   const tradeGap = computeLatestGap(filteredTrade);
+  const unemploymentGap = computeLatestGap(filteredUnemployment);
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-12">
@@ -153,8 +160,8 @@ export default function ComparisonPage() {
           <strong>Peer group:</strong> Botswana, South Africa, Namibia, Zambia, Mozambique
         </div>
         <div className="mt-2">
-          <strong>Indicators:</strong> {data.inflation.label}, {data.gdpGrowth.label}, and{" "}
-          {data.tradeBalance.label}
+          <strong>Indicators:</strong> {data.inflation.label}, {data.gdpGrowth.label},{" "}
+          {data.tradeBalance.label}, and {data.unemployment.label}
         </div>
       </div>
 
@@ -174,6 +181,10 @@ export default function ComparisonPage() {
           <p>
             External balance differences help show which economies are running stronger trade
             surpluses or deficits relative to GDP.
+          </p>
+          <p>
+            Unemployment comparisons add a labour-market lens, helping distinguish whether growth
+            improvements are broad-based or still leaving slack in the economy.
           </p>
         </div>
       </div>
@@ -245,25 +256,49 @@ export default function ComparisonPage() {
           />
         </div>
 
-        <div className="lg:col-span-2">
-          {tradeGap && (
-            <div className="mb-2 text-sm text-slate-300">
-              Botswana vs peer average ({tradeGap.year}):{" "}
-              <span className={tradeGap.gap >= 0 ? "text-green-400" : "text-red-400"}>
-                {tradeGap.gap >= 0 ? "+" : ""}
-                {tradeGap.gap.toFixed(1)} pp
-              </span>
-            </div>
-          )}
+        {/* Trade balance */}
+<div>
+  {tradeGap && (
+    <div className="mb-2 text-sm text-slate-300">
+      Botswana vs peer average ({tradeGap.year}):{" "}
+      <span className={tradeGap.gap >= 0 ? "text-green-400" : "text-red-400"}>
+        {tradeGap.gap >= 0 ? "+" : ""}
+        {tradeGap.gap.toFixed(1)} pp
+      </span>
+    </div>
+  )}
 
-          <ComparisonLineChart
-            title="Trade balance comparison"
-            subtitle="External balance on goods and services as a share of GDP."
-            countries={filteredTrade}
-            showZeroLine
-            showPeerAverage
-          />
-        </div>
+  <ComparisonLineChart
+    title="Trade balance comparison"
+    subtitle="External balance on goods and services as a share of GDP."
+    countries={filteredTrade}
+    showZeroLine
+    showPeerAverage
+  />
+</div>
+
+{/* Unemployment */}
+<div>
+  {unemploymentGap && (
+    <div className="mb-2 text-sm text-slate-300">
+      Botswana vs peer average ({unemploymentGap.year}):{" "}
+      <span
+        className={
+          unemploymentGap.gap <= 0 ? "text-green-400" : "text-red-400"
+        }
+      >
+        {unemploymentGap.gap >= 0 ? "+" : ""}
+        {unemploymentGap.gap.toFixed(1)} pp
+      </span>
+    </div>
+  )}
+
+  <ComparisonBarChart
+  title="Unemployment rate comparison"
+  subtitle="Latest unemployment rates across Botswana and selected southern African peers."
+  countries={filteredUnemployment}
+/>
+</div>
       </div>
     </main>
   );

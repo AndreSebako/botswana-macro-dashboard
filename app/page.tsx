@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { MacroSnapshot } from "@/components/MacroSnapshot";
 import { LiveEconomicNews } from "@/components/LiveEconomicNews";
+import { AuthHeader } from "@/components/AuthHeader";
 import snapshot from "@/data/processed/botswana/latest_snapshot.json";
 import { classifyRegime } from "@/lib/macro-regime";
 
@@ -49,62 +49,62 @@ export default function HomePage() {
     hour12: true,
   }).format(new Date());
 
- const cards = {
-  inflation: {
-    title: "Inflation rate",
-    value:
-      snapshot.inflation?.latest_value != null
-        ? `${snapshot.inflation.latest_value}%`
-        : "—",
-    source: snapshot.inflation?.source,
-    note: snapshot.inflation?.latest_date ?? "—",
-  },
-  exchange_rate: {
-    title: "BWP / USD",
-    value:
-      snapshot.exchange_rate?.latest_value != null
-        ? `${snapshot.exchange_rate.latest_value}`
-        : "—",
-    source: snapshot.exchange_rate?.source,
-    note: snapshot.exchange_rate?.latest_date ?? "—",
-  },
-  gdp: {
-    title: "Real GDP growth",
-    value:
-      snapshot.gdp?.latest_value != null
-        ? `${snapshot.gdp.latest_value}%`
-        : "—",
-    source: snapshot.gdp?.source,
-    note: snapshot.gdp?.latest_date ?? "—",
-  },
-  trade_balance: {
-    title: "Trade balance",
-    value:
-      snapshot.trade_balance?.latest_value != null
-        ? `${snapshot.trade_balance.latest_value} bn`
-        : "—",
-    source: snapshot.trade_balance?.source,
-    note: snapshot.trade_balance?.latest_date ?? "—",
-  },
-  policy_rate: {
-    title: "Policy rate",
-    value:
-      snapshot.policy_rate?.latest_value != null
-        ? `${snapshot.policy_rate.latest_value}%`
-        : "—",
-    source: snapshot.policy_rate?.source,
-    note: snapshot.policy_rate?.latest_date ?? "—",
-  },
-  prime_lending_rate: {
-    title: "Prime lending rate",
-    value:
-      snapshot.prime_lending_rate?.latest_value != null
-        ? `${snapshot.prime_lending_rate.latest_value}%`
-        : "—",
-    source: snapshot.prime_lending_rate?.source,
-    note: snapshot.prime_lending_rate?.latest_date ?? "—",
-  },
-};
+  const cards = {
+    inflation: {
+      title: "Inflation rate",
+      value:
+        snapshot.inflation?.latest_value != null
+          ? `${snapshot.inflation.latest_value}%`
+          : "—",
+      source: snapshot.inflation?.source,
+      note: snapshot.inflation?.latest_date ?? "—",
+    },
+    exchange_rate: {
+      title: "BWP / USD",
+      value:
+        snapshot.exchange_rate?.latest_value != null
+          ? `${snapshot.exchange_rate.latest_value}`
+          : "—",
+      source: snapshot.exchange_rate?.source,
+      note: snapshot.exchange_rate?.latest_date ?? "—",
+    },
+    gdp: {
+      title: "Real GDP growth",
+      value:
+        snapshot.gdp?.latest_value != null
+          ? `${snapshot.gdp.latest_value}%`
+          : "—",
+      source: snapshot.gdp?.source,
+      note: snapshot.gdp?.latest_date ?? "—",
+    },
+    trade_balance: {
+      title: "Trade balance",
+      value:
+        snapshot.trade_balance?.latest_value != null
+          ? `${snapshot.trade_balance.latest_value} bn`
+          : "—",
+      source: snapshot.trade_balance?.source,
+      note: snapshot.trade_balance?.latest_date ?? "—",
+    },
+    policy_rate: {
+      title: "Policy rate",
+      value:
+        snapshot.policy_rate?.latest_value != null
+          ? `${snapshot.policy_rate.latest_value}%`
+          : "—",
+      source: snapshot.policy_rate?.source,
+      note: snapshot.policy_rate?.latest_date ?? "—",
+    },
+    prime_lending_rate: {
+      title: "Prime lending rate",
+      value:
+        snapshot.prime_lending_rate?.latest_value != null
+          ? `${snapshot.prime_lending_rate.latest_value}%`
+          : "—",
+      source: snapshot.prime_lending_rate?.source,
+      note: snapshot.prime_lending_rate?.latest_date ?? "—",
+    },
+  };
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-12">
@@ -114,14 +114,10 @@ export default function HomePage() {
             Botswana macroeconomics and data analysis
           </div>
 
-          <h1 className="mt-8 max-w-5xl text-5xl font-semibold leading-tight tracking-tight text-white md:text-7xl">
-            Build a Botswana-focused macro dashboard with local data, international benchmarks, and concise analysis.
-          </h1>
-
-          <p className="mt-8 max-w-3xl text-xl leading-9 text-slate-300">
-            This platform combines official Botswana releases with benchmark data to
-            deliver a clean macro dashboard, downloadable indicator series, and short
-            research-style economic commentary.
+          <p className="mt-8 max-w-4xl text-xl leading-10 text-slate-300">
+            Botswana Macro Lab combines official local releases with benchmark
+            data to deliver clean dashboards, live macro monitoring, and concise
+            Botswana-focused economic analysis.
           </p>
 
           <div
@@ -143,21 +139,7 @@ export default function HomePage() {
             <span className="text-white">{botswanaNow}</span>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="/dashboard"
-              className="rounded-2xl bg-blue-500 px-6 py-4 text-lg font-medium text-white transition hover:bg-blue-400"
-            >
-              Open dashboard
-            </Link>
-
-            <Link
-              href="/analysis"
-              className="rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-lg font-medium text-white transition hover:bg-white/10"
-            >
-              Read analysis
-            </Link>
-          </div>
+          <AuthHeader />
         </div>
 
         <aside
@@ -167,47 +149,36 @@ export default function HomePage() {
             .replace("text-red-100", "")
             .replace("text-slate-200", "")}`}
         >
-          <div className={`text-sm uppercase tracking-[0.2em] ${regimeStyles.accent}`}>
+          <div
+            className={`text-sm uppercase tracking-[0.2em] ${regimeStyles.accent}`}
+          >
             Live macro snapshot
           </div>
 
           <div className="mt-8 space-y-8">
             {Object.values(cards).map((card) => (
-  <div key={card.title}>
-    <div className="text-3xl font-semibold text-white">{card.value}</div>
-    <div className="mt-1 text-base text-slate-400">{card.title}</div>
-    <div className="mt-2 text-sm uppercase tracking-[0.12em] text-slate-500">
-      {card.source}
-    </div>
-    <div className="mt-2 text-sm text-slate-300">{card.note}</div>
-  </div>
-))}
+              <div key={card.title}>
+                <div className="text-3xl font-semibold text-white">
+                  {card.value}
+                </div>
+                <div className="mt-1 text-base text-slate-400">
+                  {card.title}
+                </div>
+                <div className="mt-2 text-sm uppercase tracking-[0.12em] text-slate-500">
+                  {card.source}
+                </div>
+                <div className="mt-2 text-sm text-slate-300">{card.note}</div>
+              </div>
+            ))}
           </div>
         </aside>
       </section>
 
       <MacroSnapshot />
 
-     <section className="mt-12 grid gap-6 lg:grid-cols-2">
-  <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-    <h2 className="text-3xl font-semibold text-white">What this site is</h2>
-    <div className="mt-6 space-y-5 text-slate-300 leading-8">
-      <p>A Botswana macro and analytics portal with two layers:</p>
-      <p>
-        <span className="font-semibold text-white">Layer 1:</span> a public macro dashboard for GDP,
-        inflation, exchange rates, trade balance, labour market indicators, and
-        other high-frequency releases.
-      </p>
-      <p>
-        <span className="font-semibold text-white">Layer 2:</span> an analysis product that explains
-        what changed, what risks matter most, and whether Botswana is overheating,
-        slowing, or stabilizing.
-      </p>
-    </div>
-  </div>
-
-  <LiveEconomicNews />
-</section>
+      <section className="mt-12">
+        <LiveEconomicNews />
+      </section>
     </main>
   );
 }

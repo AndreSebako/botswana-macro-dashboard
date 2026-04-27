@@ -5,6 +5,7 @@ type NewsItem = {
   href: string;
   publishedAt?: string;
   category: "Botswana" | "IMF" | "Regional" | "Global";
+  signal?: string;
 };
 
 type NewsResponse = {
@@ -87,20 +88,40 @@ function NewsBlock({
             className="block rounded-xl border border-white/10 bg-white/5 p-4 transition hover:border-white/20 hover:bg-white/10"
           >
             <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full border border-white/10 px-2 py-1 text-xs text-slate-300">
-                {item.category}
-              </span>
-              <span className="text-xs uppercase tracking-[0.12em] text-slate-500">
-                {item.source}
-              </span>
-              {item.publishedAt ? (
-                <span className="text-xs text-slate-500">
-                  {new Date(item.publishedAt).toLocaleDateString("en-BW", {
-                    timeZone: "Africa/Gaborone",
-                  })}
-                </span>
-              ) : null}
-            </div>
+  <span className="rounded-full border border-white/10 px-2 py-1 text-xs text-slate-300">
+    {item.category}
+  </span>
+
+  <span className="text-xs uppercase tracking-[0.12em] text-slate-500">
+    {item.source}
+  </span>
+
+  <span
+  className={`rounded-full px-2 py-1 text-xs ${
+    item.signal === "Hawkish"
+      ? "bg-red-500/20 text-red-300"
+      : item.signal === "Growth"
+      ? "bg-green-500/20 text-green-300"
+      : item.signal === "Risk"
+      ? "bg-yellow-500/20 text-yellow-300"
+      : item.signal === "External"
+      ? "bg-blue-500/20 text-blue-300"
+      : item.signal === "Fiscal"
+      ? "bg-purple-500/20 text-purple-300"
+      : "bg-gray-500/20 text-gray-300"
+  }`}
+>
+  {item.signal}
+</span>
+
+  {item.publishedAt ? (
+    <span className="text-xs text-slate-500">
+      {new Date(item.publishedAt).toLocaleDateString("en-BW", {
+        timeZone: "Africa/Gaborone",
+      })}
+    </span>
+  ) : null}
+</div>
 
             <div className="mt-3 text-lg font-medium leading-8 text-white">
               {item.title}
@@ -145,6 +166,11 @@ export async function LiveEconomicNews() {
           IMF feed is temporarily unavailable. Botswana headlines are still live.
         </div>
       ) : null}
+
+<div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
+  Botswana macro signal: Fiscal and growth-related developments dominate recent headlines, 
+  suggesting policy-driven stabilization with external sector sensitivity.
+</div>
 
       <div className="mt-6 grid gap-6 xl:grid-cols-2">
         <NewsBlock

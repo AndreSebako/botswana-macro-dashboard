@@ -23,6 +23,7 @@ type SnapshotEntry = {
 
 type SnapshotFile = {
   inflation: SnapshotEntry;
+  unemployment_rate: SnapshotEntry;
   exchange_rate: SnapshotEntry;
   gdp: SnapshotEntry;
   trade_balance: SnapshotEntry;
@@ -52,6 +53,7 @@ type CardItem = {
 
 type CardMap = {
   inflation: CardItem;
+  unemployment_rate: CardItem;
   exchange_rate: CardItem;
   gdp: CardItem;
   trade_balance: CardItem;
@@ -84,14 +86,13 @@ function readJson<T>(filename: string): T | null {
 function formatValue(slug: string, value: number | null): string {
   if (value === null) return "—";
 
-  if (
-    slug === "inflation" ||
-    slug === "gdp" ||
-    slug === "policy_rate" ||
-    slug === "prime_lending_rate" ||
-    slug === "real_policy_rate" ||
-    slug === "real_prime_lending_rate"
-  ) {
+ if (
+  slug === "inflation" ||
+  slug === "gdp" ||
+  slug === "policy_rate" ||
+  slug === "prime_lending_rate" ||
+  slug === "unemployment_rate"
+) {
     return `${value}%`;
   }
 
@@ -120,6 +121,7 @@ export function getBotswanaDashboardSeries(): DashboardSeriesItem[] {
   if (!snapshot) return [];
 
   const inflation = readJson<Point[]>("inflation.json") ?? [];
+  const unemploymentRate = readJson<Point[]>("unemployment_rate.json") ?? [];
   const exchangeRate = readJson<Point[]>("exchange_rate.json") ?? [];
   const gdp = readJson<Point[]>("gdp.json") ?? [];
   const trade = readJson<Point[]>("trade_balance.json") ?? [];
@@ -148,6 +150,20 @@ export function getBotswanaDashboardSeries(): DashboardSeriesItem[] {
       points: inflation,
       showZeroLine: false,
       tone: snapshot.inflation.tone,
+    },
+        {
+      slug: "unemployment_rate",
+      title: "Unemployment Rate",
+      source: snapshot.unemployment_rate.source,
+      updatedAt: formatDateLabel(snapshot.unemployment_rate.latest_date),
+      latestValue: formatValue(
+        "unemployment_rate",
+        snapshot.unemployment_rate.latest_value
+      ),
+      latestLabel: "latest labour market reading",
+      points: unemploymentRate,
+      showZeroLine: false,
+      tone: snapshot.unemployment_rate.tone,
     },
     {
       slug: "exchange_rate",
@@ -253,6 +269,14 @@ export function getBotswanaCardData(): CardMap | null {
       footnote: formatDateLabel(snapshot.inflation.latest_date),
       changeText: formatChangeText(snapshot.inflation),
       tone: snapshot.inflation.tone,
+    },
+    unemployment_rate: {
+      title: "Unemployment rate",
+      value: formatValue("unemployment_rate",snapshot.unemployment_rate.latest_value),
+      source: snapshot.unemployment_rate.source,
+      footnote: formatDateLabel(snapshot.unemployment_rate.latest_date),
+      changeText: formatChangeText(snapshot.unemployment_rate),
+      tone: snapshot.unemployment_rate.tone,
     },
     exchange_rate: {
       title: "BWP / USD",
@@ -389,4 +413,141 @@ export function getBotswanaMacroRegime(): RegimeSummary | null {
         ? "Signals are mixed: growth is positive, but inflation and the external balance still point to macro pressure."
         : "Signals are mixed across growth and inflation, so the regime is not clearly one-sided.",
   };
+}
+
+export function getMacroSignal(
+  series: ReturnType<typeof getBotswanaDashboardSeries>
+) {
+  const inflation = series.find((s) => s.slug === "inflation");
+  const policy = series.find((s) => s.slug === "policy_rate");
+  const fx = series.find((s) => s.slug === "exchange_rate");
+  const gdp = series.find((s) => s.slug === "gdp");
+
+  function latestTwo(data?: { date: string; value: number }[]) {
+    if (!data || data.length < 2) return null;
+    return [data[data.length - 2], data[data.length - 1]];
+  }
+
+  let score = 0;
+
+  const inf = latestTwo(inflation?.points);
+  if (inf) {
+    const change = inf[1].value - inf[0].value;
+    if (inf[1].value > 6) score += 2;
+    else if (inf[1].value > 4) score += 1;
+    if (change > 0.5) score += 1;
+  }
+
+  const pol = latestTwo(policy?.points);
+  if (pol && inf) {
+    const realRate = pol[1].value - inf[1].value;
+    if (realRate < 0) score += 2;
+    else if (realRate < 1) score += 1;
+  }
+
+  const fxData = latestTwo(fx?.points);
+  if (fxData) {
+    const change = (fxData[1].value - fxData[0].value) / fxData[0].value;
+    if (change > 0.05) score += 2;
+    else if (change > 0.02) score += 1;
+  }
+
+  const gdpData = latestTwo(gdp?.points);
+  if (gdpData) {
+    if (gdpData[1].value < 2) score += 2;
+    else if (gdpData[1].value < 4) score += 1;
+  }
+
+  if (score >= 6) {
+    return {
+      label: "Macro stress building",
+      color: "text-red-400",
+      bg: "bg-red-400/10 border-red-400/20",
+    };
+  }
+
+  if (score >= 3) {
+    return {
+      label: "Mixed macro signals",
+      color: "text-amber-400",
+      bg: "bg-amber-400/10 border-amber-400/20",
+    };
+  }
+
+  return {
+    label: "Macro stable",
+    color: "text-green-400",
+    bg: "bg-green-400/10 border-green-400/20",
+  };
+}
+
+export function getMacroCommentary(
+  series: ReturnType<typeof getBotswanaDashboardSeries>
+) {
+  const inflation = series.find((s) => s.slug === "inflation");
+  const policy = series.find((s) => s.slug === "policy_rate");
+  const fx = series.find((s) => s.slug === "exchange_rate");
+  const gdp = series.find((s) => s.slug === "gdp");
+
+  function latest(data?: { date: string; value: number }[]) {
+    if (!data || data.length === 0) return null;
+    return data[data.length - 1];
+  }
+
+  const inf = latest(inflation?.points);
+  const pol = latest(policy?.points);
+  const fxData = latest(fx?.points);
+  const gdpData = latest(gdp?.points);
+
+  const insights: string[] = [];
+
+  if (inf && pol) {
+    const realRate = pol.value - inf.value;
+
+    if (realRate < 0) {
+      insights.push(
+        "Real interest rates remain negative, indicating accommodative financial conditions despite inflation dynamics."
+      );
+    } else if (realRate < 1) {
+      insights.push(
+        "Real rates are marginally positive, suggesting only mild monetary tightness."
+      );
+    } else {
+      insights.push(
+        "Real rates are positive, indicating restrictive monetary conditions."
+      );
+    }
+  }
+
+  if (inf) {
+    if (inf.value > 6) {
+      insights.push(
+        "Inflation remains elevated, posing upside risks to policy tightening."
+      );
+    } else if (inf.value < 4) {
+      insights.push(
+        "Inflation appears contained within a moderate range."
+      );
+    }
+  }
+
+  if (fxData) {
+    insights.push(
+      "Exchange rate dynamics remain a key transmission channel for external shocks."
+    );
+  }
+
+  if (gdpData) {
+    if (gdpData.value < 2) {
+      insights.push(
+        "Growth momentum appears weak, suggesting downside macro risks."
+      );
+    } else if (gdpData.value > 4) {
+      insights.push(
+        "Growth remains relatively strong, supporting macro stability."
+      );
+    }
+  }
+
+  return insights;
 }
