@@ -10,62 +10,45 @@ type UserProfile = {
   profession?: string;
 };
 
-type AuthState = {
-  loading: boolean;
-  isAuthenticated: boolean;
-  profile: UserProfile | null;
-};
-
 export function AuthHeader() {
-  const [authState, setAuthState] = useState<AuthState>({
-    loading: true,
-    isAuthenticated: false,
-    profile: null,
-  });
+  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
 
   useEffect(() => {
     const supabase = createClient();
 
-    async function loadUser() {
+    async function loadSession() {
       const {
         data: { session },
       } = await supabase.auth.getSession();
 
-      const profile = session?.user?.user_metadata as UserProfile | undefined;
-
-      setAuthState({
-        loading: false,
-        isAuthenticated: Boolean(session),
-        profile: profile ?? null,
-      });
+      setIsAuthenticated(Boolean(session));
+      setProfile((session?.user?.user_metadata as UserProfile) ?? null);
+      setLoading(false);
     }
 
-    loadUser();
+    loadSession();
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      const profile = session?.user?.user_metadata as UserProfile | undefined;
-
-      setAuthState({
-        loading: false,
-        isAuthenticated: Boolean(session),
-        profile: profile ?? null,
-      });
+      setIsAuthenticated(Boolean(session));
+      setProfile((session?.user?.user_metadata as UserProfile) ?? null);
+      setLoading(false);
     });
 
-    return () => {
-      subscription.unsubscribe();
-    };
+    return () => subscription.unsubscribe();
   }, []);
 
   async function handleSignOut() {
     const supabase = createClient();
     await supabase.auth.signOut();
-    window.location.href = "/";
+    window.location.assign("/");
   }
 
-  const firstName = authState.profile?.first_name?.trim();
+  const firstName = profile?.first_name?.trim();
+  const profession = profile?.profession?.trim();
 
   return (
     <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -83,14 +66,16 @@ export function AuthHeader() {
         Read analysis
       </Link>
 
-      {authState.loading ? (
+      {loading ? (
         <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-lg font-medium text-slate-300">
           Checking session...
         </div>
-      ) : authState.isAuthenticated ? (
+      ) : isAuthenticated ? (
         <>
           <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-lg font-medium text-slate-200">
-            {firstName ? `Welcome, ${firstName}` : "Signed in"}
+            {firstName
+              ? `Welcome, ${firstName}${profession ? ` • ${profession}` : ""}`
+              : "Signed in"}
           </div>
 
           <Link

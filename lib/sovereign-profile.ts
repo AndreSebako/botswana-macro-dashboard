@@ -2,10 +2,10 @@ import fs from "fs";
 import path from "path";
 
 type DebtFile = {
-  series: { date: string; value: number }[];
-  latest: { date: string; value: number } | null;
-  source: string;
-  indicator: string;
+  series?: { date: string; value: number }[];
+  latest?: { date: string; value: number } | null;
+  source?: string;
+  indicator?: string;
 };
 
 type CreditFile = {
@@ -62,25 +62,27 @@ export function getSovereignProfile() {
   };
 }
 
-export function getSovereignSignal(profile: ReturnType<typeof getSovereignProfile>) {
+export function getSovereignSignal(
+  profile: ReturnType<typeof getSovereignProfile>
+) {
   let score = 0;
 
-  // Debt risk
   if (typeof profile.debtToGdpPct === "number") {
     if (profile.debtToGdpPct > 60) score += 2;
     else if (profile.debtToGdpPct > 40) score += 1;
   }
 
-  // Reserve adequacy
   if (typeof profile.reserveCoverMonths === "number") {
     if (profile.reserveCoverMonths < 3) score += 2;
     else if (profile.reserveCoverMonths < 5) score += 1;
   }
 
-  // Credit rating risk
   if (profile.spRating) {
-    if (profile.spRating.includes("BB")) score += 2;
-    else if (profile.spRating.includes("BBB-")) score += 1;
+    if (profile.spRating.includes("BB") && !profile.spRating.includes("BBB")) {
+      score += 2;
+    } else if (profile.spRating.includes("BBB-")) {
+      score += 1;
+    }
   }
 
   if (score >= 4) {

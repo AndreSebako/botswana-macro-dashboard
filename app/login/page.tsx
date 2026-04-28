@@ -8,7 +8,6 @@ import { useSearchParams } from "next/navigation";
 function LoginForm() {
   const supabase = createClient();
   const searchParams = useSearchParams();
-
   const next = searchParams.get("next") || "/dashboard";
 
   const [email, setEmail] = useState("");
@@ -38,15 +37,7 @@ function LoginForm() {
 
   return (
     <main className="mx-auto max-w-md px-6 py-16 text-white">
-      <div className="text-sm uppercase tracking-[0.2em] text-slate-400">
-        Account
-      </div>
-
-      <h1 className="mt-3 text-3xl font-semibold">Log in</h1>
-
-      <p className="mt-3 text-slate-300">
-        Sign in to access the protected dashboard and data sections.
-      </p>
+      <h1 className="text-3xl font-semibold">Log in</h1>
 
       <form onSubmit={handleLogin} className="mt-8 space-y-4">
         <input
@@ -75,7 +66,7 @@ function LoginForm() {
         </button>
       </form>
 
-      {message ? <p className="mt-4 text-sm text-slate-300">{message}</p> : null}
+      {message ? <p className="mt-4 text-sm text-red-300">{message}</p> : null}
 
       <p className="mt-6 text-sm text-slate-400">
         Need an account?{" "}
@@ -89,13 +80,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense
-      fallback={
-        <main className="mx-auto max-w-md px-6 py-16 text-white">
-          Loading login...
-        </main>
-      }
-    >
+    <Suspense fallback={<main className="px-6 py-16 text-white">Loading...</main>}>
       <LoginForm />
     </Suspense>
   );

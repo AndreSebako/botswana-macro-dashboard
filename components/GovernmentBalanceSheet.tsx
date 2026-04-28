@@ -10,13 +10,13 @@ import {
 } from "recharts";
 
 type GovernmentBalanceSheetProps = {
-  debtToGdpPct: number | null;
-  debtYear: string | null;
-  reservesUsdBn: number | null;
-  reserveCoverMonths: number | null;
-  spRating: string | null;
-  moodysRating: string | null;
-  ratingOutlook: string | null;
+  debtToGdpPct?: number | null;
+  debtYear?: string | null;
+  reservesUsdBn?: number | null;
+  reserveCoverMonths?: number | null;
+  spRating?: string | null;
+  moodysRating?: string | null;
+  ratingOutlook?: string | null;
 };
 
 const assetData = [
@@ -67,7 +67,8 @@ export function GovernmentBalanceSheet({
             Government balance sheet
           </h2>
           <p className="mt-2 text-sm text-slate-400">
-            Estimated asset structure, debt context, reserve adequacy, and sovereign credit profile.
+            Estimated asset structure, debt context, reserve adequacy, and
+            sovereign credit profile.
           </p>
         </div>
 
@@ -101,7 +102,10 @@ export function GovernmentBalanceSheet({
                   strokeWidth={1}
                 >
                   {assetData.map((entry, index) => (
-                    <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
+                    <Cell
+                      key={entry.name}
+                      fill={COLORS[index % COLORS.length]}
+                    />
                   ))}
                 </Pie>
                 <Tooltip
@@ -128,8 +132,10 @@ export function GovernmentBalanceSheet({
               Debt to GDP
             </div>
             <div className="mt-3 text-4xl font-semibold text-white">
-  {typeof debtToGdpPct === "number" ? `${debtToGdpPct.toFixed(1)}%` : "N/A"}
-</div>
+              {typeof debtToGdpPct === "number"
+                ? `${debtToGdpPct.toFixed(1)}%`
+                : "N/A"}
+            </div>
             <div className="mt-2 text-sm text-slate-400">
               {debtYear
                 ? `Latest reported year: ${debtYear}`
@@ -142,13 +148,15 @@ export function GovernmentBalanceSheet({
               Reserve adequacy
             </div>
             <div className="mt-3 text-3xl font-semibold text-white">
-  {typeof reservesUsdBn === "number" ? `$${reservesUsdBn.toFixed(1)}bn` : "N/A"}
-</div>
-<div className="mt-2 text-sm text-slate-400">
-  {typeof reserveCoverMonths === "number"
-    ? `Approx. ${reserveCoverMonths.toFixed(1)} months of import cover`
-    : "Reserve cover not available."}
-</div>
+              {typeof reservesUsdBn === "number"
+                ? `$${reservesUsdBn.toFixed(1)}bn`
+                : "N/A"}
+            </div>
+            <div className="mt-2 text-sm text-slate-400">
+              {typeof reserveCoverMonths === "number"
+                ? `Approx. ${reserveCoverMonths.toFixed(1)} months of import cover`
+                : "Reserve cover not available."}
+            </div>
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
@@ -169,16 +177,18 @@ export function GovernmentBalanceSheet({
               Interpretation
             </div>
             <div className="mt-3 text-sm leading-7 text-amber-100">
-              Botswana’s public balance sheet still appears buffer-rich relative to many peers,
-              but fiscal strength remains sensitive to diamond revenue, reserve drawdowns,
-              and the pace of public expenditure.
+              Botswana’s public balance sheet still appears buffer-rich relative
+              to many peers, but fiscal strength remains sensitive to diamond
+              revenue, reserve drawdowns, and public expenditure execution.
             </div>
           </div>
         </div>
       </div>
 
       <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
-        <h3 className="text-lg font-semibold text-white">Estimated breakdown</h3>
+        <h3 className="text-lg font-semibold text-white">
+          Estimated breakdown
+        </h3>
 
         <div className="mt-5 grid gap-4 xl:grid-cols-2">
           {assetData.map((item, index) => {

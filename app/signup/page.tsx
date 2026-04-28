@@ -40,21 +40,12 @@ export default function SignupPage() {
       return;
     }
 
-    window.location.href = "/dashboard";
+    window.location.assign("/dashboard");
   }
 
   return (
     <main className="mx-auto max-w-md px-6 py-16 text-white">
-      <div className="text-sm uppercase tracking-[0.2em] text-slate-400">
-        Account
-      </div>
-
-      <h1 className="mt-3 text-3xl font-semibold">Create account</h1>
-
-      <p className="mt-3 text-slate-300">
-        Sign up to access the dashboard, comparison tools, analysis pages, and
-        protected data sections.
-      </p>
+      <h1 className="text-3xl font-semibold">Create account</h1>
 
       <form onSubmit={handleSignup} className="mt-8 space-y-4">
         <input
@@ -110,7 +101,7 @@ export default function SignupPage() {
         </button>
       </form>
 
-      {message ? <p className="mt-4 text-sm text-slate-300">{message}</p> : null}
+      {message ? <p className="mt-4 text-sm text-red-300">{message}</p> : null}
 
       <p className="mt-6 text-sm text-slate-400">
         Already have an account?{" "}
