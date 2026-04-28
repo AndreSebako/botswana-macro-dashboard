@@ -16,23 +16,23 @@
     "title": "Unemployment Rate",
     "source": "Statistics Botswana",
     "unit": "%",
-    "latest_date": "2025-12-31",
-    "latest_value": 22.2,
-    "previous_date": "2024-12-31",
-    "previous_value": 22.8,
-    "delta": -0.6000000000000014,
-    "tone": "positive"
+    "latest_date": null,
+    "latest_value": null,
+    "previous_date": null,
+    "previous_value": null,
+    "delta": null,
+    "tone": "neutral"
   },
   "exchange_rate": {
     "slug": "exchange_rate",
     "title": "BWP / USD",
     "source": "Twelve Data",
     "unit": "",
-    "latest_date": "2026-04-16",
-    "latest_value": 13.40978,
-    "previous_date": "2026-04-15",
-    "previous_value": 13.41448,
-    "delta": -0.004699999999999704,
+    "latest_date": "2026-04-27",
+    "latest_value": 13.49068,
+    "previous_date": "2026-04-26",
+    "previous_value": 13.52146,
+    "delta": -0.03078000000000003,
     "tone": "neutral"
   },
   "gdp": {
@@ -107,5 +107,5 @@
     "delta": -0.30000000000000027,
     "tone": "neutral"
   },
-  "last_updated": "2026-04-20T02:57:13.854576"
+  "last_updated": "2026-04-28T19:52:32.324190"
 }
