@@ -1,0 +1,51 @@
+{
+  "updatedAt": "2026-04-28T19:48:51.718Z",
+  "count": 5,
+  "items": [
+    {
+      "title": "2022 Population Census",
+      "summary": "2022 Population Census",
+      "source": "Statistics Botswana Latest News",
+      "href": "https://www.statsbots.org.bw/census-2022",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Demographics"
+    },
+    {
+      "title": "International Merchandise Trade Statistics- Monthly Digest February 2026",
+      "summary": "International Merchandise Trade Statistics- Monthly Digest February 2026",
+      "source": "Statistics Botswana Latest News",
+      "href": "https://www.statsbots.org.bw/sites/default/files/International%20Merchandise%20Trade%20Statistics%20-Monthly%20Digest%20February%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Trade"
+    },
+    {
+      "title": "Consumer Price Index March 2026",
+      "summary": "Consumer Price Index March 2026",
+      "source": "Statistics Botswana Latest News",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Consumer%20Price%20Index%20March%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Inflation"
+    },
+    {
+      "title": "Producer Price Index (Mining and Utilities) Quarter 4 of 2025",
+      "summary": "Producer Price Index (Mining and Utilities) Quarter 4 of 2025",
+      "source": "Statistics Botswana Latest News",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Producer%20Price%20Index%20%28Mining%20and%20Utilities%29%20Quarter%204%20of%202025.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Mining"
+    },
+    {
+      "title": "Botswana Food and Beverages Imports January 2026",
+      "summary": "Botswana Food and Beverages Imports January 2026",
+      "source": "Statistics Botswana Latest News",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Botswana%20Food%20and%20Beverage%20Imports%20January%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Trade"
+    }
+  ]
+}
