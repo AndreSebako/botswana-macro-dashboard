@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-05-27T10:01:23.686Z",
-  "count": 6,
+  "updatedAt": "2026-05-28T10:11:12.684Z",
+  "count": 4,
   "items": [
     {
       "title": "2022 Population Census",
@@ -37,24 +37,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Trade"
-    },
-    {
-      "title": "Consumer Price Index March 2026",
-      "summary": "Consumer Price Index March 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Consumer%20Price%20Index%20March%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Inflation"
-    },
-    {
-      "title": "Producer Price Index (Mining and Utilities) Quarter 4 of 2025",
-      "summary": "Producer Price Index (Mining and Utilities) Quarter 4 of 2025",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Producer%20Price%20Index%20%28Mining%20and%20Utilities%29%20Quarter%204%20of%202025.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Mining"
     }
   ]
 }
