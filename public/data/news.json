@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-10T10:10:06.782Z",
-  "count": 4,
+  "updatedAt": "2026-06-11T10:43:26.184Z",
+  "count": 3,
   "items": [
     {
       "title": "2022 Population Census",
@@ -28,15 +28,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Trade"
-    },
-    {
-      "title": "Consumer Price Index April 2026",
-      "summary": "Consumer Price Index April 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Consumer%20Price%20Index%20April%202026%20%281%29_0.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Inflation"
     }
   ]
 }
