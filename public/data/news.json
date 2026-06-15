@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-14T09:41:38.234Z",
+  "updatedAt": "2026-06-15T12:24:20.000Z",
   "count": 3,
   "items": [
     {
@@ -12,6 +12,15 @@
       "signal": "Demographics"
     },
     {
+      "title": "Consumer Price Index May 2026",
+      "summary": "Consumer Price Index May 2026",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Consumer%20Price%20Index%20May%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Inflation"
+    },
+    {
       "title": "Botswana Consumer Price Index- 2025 in Review",
       "summary": "Botswana Consumer Price Index- 2025 in Review",
       "source": "Statistics Botswana Press",
@@ -19,15 +28,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Inflation"
-    },
-    {
-      "title": "International Merchandise Trade Statistics Monthly Digest - March 2026",
-      "summary": "International Merchandise Trade Statistics Monthly Digest - March 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/International%20Merchandise%20Trade%20Statistics%20-Monthly%20Digest%20March%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Trade"
     }
   ]
 }
