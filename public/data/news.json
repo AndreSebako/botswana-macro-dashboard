@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-30T09:45:35.330Z",
-  "count": 5,
+  "updatedAt": "2026-07-01T09:55:53.210Z",
+  "count": 6,
   "items": [
     {
       "title": "2022 Population Census",
@@ -10,6 +10,15 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Demographics"
+    },
+    {
+      "title": "Index Of The Physical Volume Of Mining Production First Quarter 2026 Stats Brief",
+      "summary": "Index Of The Physical Volume Of Mining Production First Quarter 2026 Stats Brief",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Index%20Of%20The%20Physical%20Volume%20Of%20Mining%20Production%20First%20Quarter%202026%20Stats%20Brief.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Mining"
     },
     {
       "title": "International Merchandise Trade Statistics- Monthly Digest April 2026",
