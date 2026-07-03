@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-07-02T09:18:37.407Z",
-  "count": 6,
+  "updatedAt": "2026-07-03T09:24:25.651Z",
+  "count": 5,
   "items": [
     {
       "title": "2022 Population Census",
@@ -10,6 +10,15 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Demographics"
+    },
+    {
+      "title": "Producer Price Index (Mining and Utilities) Quarter 1 of 2026",
+      "summary": "Producer Price Index (Mining and Utilities) Quarter 1 of 2026",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Producer%20Price%20Index%20%28Mining%20and%20Utilities%29%20Quarter%201%20of%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Mining"
     },
     {
       "title": "Index Of The Physical Volume Of Mining Production First Quarter 2026 Stats Brief",
@@ -37,24 +46,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Trade"
-    },
-    {
-      "title": "Botswana Food and Beverage Imports March 2026",
-      "summary": "Botswana Food and Beverage Imports March 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Botswana%20Food%20and%20Beverage%20Imports%20March%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Trade"
-    },
-    {
-      "title": "Consumer Price Index May 2026",
-      "summary": "Consumer Price Index May 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Consumer%20Price%20Index%20May%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Inflation"
     }
   ]
 }
