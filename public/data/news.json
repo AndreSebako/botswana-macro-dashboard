@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-09T09:51:36.734Z",
+  "updatedAt": "2026-07-10T09:41:44.586Z",
   "count": 4,
   "items": [
     {
@@ -10,6 +10,15 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Demographics"
+    },
+    {
+      "title": "Statistics Botswana Annual Report 2024/25",
+      "summary": "Statistics Botswana Annual Report 2024/25",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Statistics%20Botswana%20Annual%20Report%202024-25.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Macro"
     },
     {
       "title": "Producer Price Index (Mining and Utilities) Quarter 1 of 2026",
@@ -28,15 +37,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Mining"
-    },
-    {
-      "title": "International Merchandise Trade Statistics- Monthly Digest April 2026",
-      "summary": "International Merchandise Trade Statistics- Monthly Digest April 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/International%20Merchandise%20Trade%20Statistics%20Monthly%20Digest%20%20April%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Trade"
     }
   ]
 }
