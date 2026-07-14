@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-07-13T09:34:21.789Z",
-  "count": 4,
+  "updatedAt": "2026-07-14T08:13:08.591Z",
+  "count": 5,
   "items": [
     {
       "title": "2022 Population Census",
@@ -10,6 +10,15 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Demographics"
+    },
+    {
+      "title": "Botswana Food & Beverage Imports April 2026",
+      "summary": "Botswana Food & Beverage Imports April 2026",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Botswana%20Food%20and%20Beverage%20Imports%20April%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Trade"
     },
     {
       "title": "Statistics Botswana Annual Report 2024/25",
