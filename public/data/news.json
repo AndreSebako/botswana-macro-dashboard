@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-31T08:54:18.438Z",
+  "updatedAt": "2026-08-01T08:25:34.242Z",
   "count": 6,
   "items": [
     {
@@ -10,6 +10,15 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Demographics"
+    },
+    {
+      "title": "Botswana Food & Beverage Imports May 2026",
+      "summary": "Botswana Food & Beverage Imports May 2026",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Botswana%20Food%20%26%20Beverage%20Imports%20May%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Trade"
     },
     {
       "title": "International Merchandise Trade Statistics Monthly Digest- May 2026",
@@ -46,15 +55,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Macro"
-    },
-    {
-      "title": "Producer Price Index (Mining and Utilities) Quarter 1 of 2026",
-      "summary": "Producer Price Index (Mining and Utilities) Quarter 1 of 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Producer%20Price%20Index%20%28Mining%20and%20Utilities%29%20Quarter%201%20of%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Mining"
     }
   ]
 }
