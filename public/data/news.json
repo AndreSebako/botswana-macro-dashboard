@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-13T07:39:16.307Z",
-  "count": 5,
+  "updatedAt": "2026-08-14T07:36:47.645Z",
+  "count": 4,
   "items": [
     {
       "title": "2022 Population Census",
@@ -10,6 +10,15 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Demographics"
+    },
+    {
+      "title": "Consumer Price Index July 2026",
+      "summary": "Consumer Price Index July 2026",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Consumer%20Price%20Index%20July%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Inflation"
     },
     {
       "title": "Botswana Food & Beverage Imports May 2026",
@@ -25,24 +34,6 @@
       "summary": "International Merchandise Trade Statistics Monthly Digest- May 2026",
       "source": "Statistics Botswana Press",
       "href": "https://www.statsbots.org.bw/sites/default/files/International%20Merchandise%20Trade%20Statistics-Monthly%20Digest%20May%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Trade"
-    },
-    {
-      "title": "Consumer Price Index June 2026",
-      "summary": "Consumer Price Index June 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Consumer%20Price%20Index%20June%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Inflation"
-    },
-    {
-      "title": "Botswana Food & Beverage Imports April 2026",
-      "summary": "Botswana Food & Beverage Imports April 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Botswana%20Food%20and%20Beverage%20Imports%20April%202026.pdf",
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Trade"
