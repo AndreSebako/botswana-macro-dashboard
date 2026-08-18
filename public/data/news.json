@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-17T07:01:59.931Z",
-  "count": 4,
+  "updatedAt": "2026-08-18T06:49:29.518Z",
+  "count": 3,
   "items": [
     {
       "title": "2022 Population Census",
@@ -12,6 +12,15 @@
       "signal": "Demographics"
     },
     {
+      "title": "Vital Statistics Report 2024",
+      "summary": "Vital Statistics Report 2024",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Vital%20Statistics%20Report%202024.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Macro"
+    },
+    {
       "title": "Consumer Price Index July 2026",
       "summary": "Consumer Price Index July 2026",
       "source": "Statistics Botswana Press",
@@ -19,24 +28,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Inflation"
-    },
-    {
-      "title": "Botswana Food & Beverage Imports May 2026",
-      "summary": "Botswana Food & Beverage Imports May 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Botswana%20Food%20%26%20Beverage%20Imports%20May%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Trade"
-    },
-    {
-      "title": "International Merchandise Trade Statistics Monthly Digest- May 2026",
-      "summary": "International Merchandise Trade Statistics Monthly Digest- May 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/International%20Merchandise%20Trade%20Statistics-Monthly%20Digest%20May%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Trade"
     }
   ]
 }
