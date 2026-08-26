@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-25T06:53:43.273Z",
-  "count": 3,
+  "updatedAt": "2026-08-26T06:54:48.023Z",
+  "count": 4,
   "items": [
     {
       "title": "2022 Population Census",
@@ -10,6 +10,15 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Demographics"
+    },
+    {
+      "title": "International Merchandise Trade Statistics Monthly Digest- June 2026",
+      "summary": "International Merchandise Trade Statistics Monthly Digest- June 2026",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/International%20Merchandise%20Trade%20Statistics%20%20June%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Trade"
     },
     {
       "title": "Vital Statistics Report 2024",
