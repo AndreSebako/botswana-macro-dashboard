@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-27T17:28:20.516Z",
-  "count": 4,
+  "updatedAt": "2026-08-28T18:22:03.211Z",
+  "count": 6,
   "items": [
     {
       "title": "2022 Population Census",
@@ -10,6 +10,33 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Demographics"
+    },
+    {
+      "title": "Botswana Food & Beverage Imports June 2026",
+      "summary": "Botswana Food & Beverage Imports June 2026",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Botswana%20Food%20%26%20Beverage%20Imports%20June%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Trade"
+    },
+    {
+      "title": "Index of Water Production Statistics First Quarter 2026 Stats Brief",
+      "summary": "Index of Water Production Statistics First Quarter 2026 Stats Brief",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Index%20of%20Water%20Production%20Statistics%20First%20Quarter%202026%20Stats%20Brief.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Macro"
+    },
+    {
+      "title": "Tourism Statistics Annual Report 2024",
+      "summary": "Tourism Statistics Annual Report 2024",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Tourism%20Statistics%20Annual%20Report%202024_2.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Tourism"
     },
     {
       "title": "International Merchandise Trade Statistics Monthly Digest- June 2026",
@@ -28,15 +55,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Macro"
-    },
-    {
-      "title": "Consumer Price Index July 2026",
-      "summary": "Consumer Price Index July 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Consumer%20Price%20Index%20July%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Inflation"
     }
   ]
 }
