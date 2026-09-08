@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-07T11:59:01.269Z",
-  "count": 7,
+  "updatedAt": "2026-09-08T10:54:17.986Z",
+  "count": 6,
   "items": [
     {
       "title": "2022 Population Census",
@@ -55,15 +55,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Trade"
-    },
-    {
-      "title": "Vital Statistics Report 2024",
-      "summary": "Vital Statistics Report 2024",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Vital%20Statistics%20Report%202024.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Macro"
     }
   ]
 }
