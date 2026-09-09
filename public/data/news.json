@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-08T10:54:17.986Z",
-  "count": 6,
+  "updatedAt": "2026-09-09T10:59:06.432Z",
+  "count": 5,
   "items": [
     {
       "title": "2022 Population Census",
@@ -46,15 +46,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Tourism"
-    },
-    {
-      "title": "International Merchandise Trade Statistics Monthly Digest- June 2026",
-      "summary": "International Merchandise Trade Statistics Monthly Digest- June 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/International%20Merchandise%20Trade%20Statistics%20%20June%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Trade"
     }
   ]
 }
