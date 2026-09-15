@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-14T12:14:42.023Z",
+  "updatedAt": "2026-09-15T11:23:14.269Z",
   "count": 5,
   "items": [
     {
@@ -10,6 +10,15 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Demographics"
+    },
+    {
+      "title": "Consumer Price Index August 2026",
+      "summary": "Consumer Price Index August 2026",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/Consumer%20Price%20Index%20August%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Inflation"
     },
     {
       "title": "Botswana Causes of Mortality 2024 Annual Report",
@@ -37,15 +46,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Macro"
-    },
-    {
-      "title": "Tourism Statistics Annual Report 2024",
-      "summary": "Tourism Statistics Annual Report 2024",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Tourism%20Statistics%20Annual%20Report%202024_2.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Tourism"
     }
   ]
 }
