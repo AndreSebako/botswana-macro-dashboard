@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-25T11:28:32.020Z",
+  "updatedAt": "2026-09-26T11:03:27.857Z",
   "count": 5,
   "items": [
     {
@@ -10,6 +10,15 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Demographics"
+    },
+    {
+      "title": "International Merchandise Trade Statistics -Monthly Digest July 2026",
+      "summary": "International Merchandise Trade Statistics -Monthly Digest July 2026",
+      "source": "Statistics Botswana Press",
+      "href": "https://www.statsbots.org.bw/sites/default/files/International%20Merchandise%20Trade%20Statistics-Monthly%20Digest%20July%202026.pdf",
+      "publishedAt": null,
+      "category": "Botswana",
+      "signal": "Trade"
     },
     {
       "title": "Consumer Price Index August 2026",
@@ -37,15 +46,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Trade"
-    },
-    {
-      "title": "Index of Water Production Statistics First Quarter 2026 Stats Brief",
-      "summary": "Index of Water Production Statistics First Quarter 2026 Stats Brief",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Index%20of%20Water%20Production%20Statistics%20First%20Quarter%202026%20Stats%20Brief.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Macro"
     }
   ]
 }
