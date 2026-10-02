@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-01T12:44:54.577Z",
-  "count": 4,
+  "updatedAt": "2026-10-02T12:09:02.672Z",
+  "count": 2,
   "items": [
     {
       "title": "2022 Population Census",
@@ -19,24 +19,6 @@
       "publishedAt": null,
       "category": "Botswana",
       "signal": "Mining"
-    },
-    {
-      "title": "Index of Water Production Statistics Second Quarter 2026 Stats Brief",
-      "summary": "Index of Water Production Statistics Second Quarter 2026 Stats Brief",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/Water%20Production%20Statistics-%20Second%20Quarter%202026%20Stats%20Brief.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Macro"
-    },
-    {
-      "title": "International Merchandise Trade Statistics -Monthly Digest July 2026",
-      "summary": "International Merchandise Trade Statistics -Monthly Digest July 2026",
-      "source": "Statistics Botswana Press",
-      "href": "https://www.statsbots.org.bw/sites/default/files/International%20Merchandise%20Trade%20Statistics-Monthly%20Digest%20July%202026.pdf",
-      "publishedAt": null,
-      "category": "Botswana",
-      "signal": "Trade"
     }
   ]
 }
