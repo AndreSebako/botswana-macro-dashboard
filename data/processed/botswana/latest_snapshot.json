@@ -28,11 +28,11 @@
     "title": "BWP / USD",
     "source": "Twelve Data",
     "unit": "",
-    "latest_date": "2026-11-23",
-    "latest_value": 14.19892,
-    "previous_date": "2026-11-22",
-    "previous_value": 14.23863,
-    "delta": -0.039710000000001244,
+    "latest_date": "2026-11-24",
+    "latest_value": 14.14043,
+    "previous_date": "2026-11-23",
+    "previous_value": 14.19892,
+    "delta": -0.05848999999999904,
     "tone": "neutral"
   },
   "gdp": {
@@ -107,5 +107,5 @@
     "delta": -0.30000000000000027,
     "tone": "neutral"
   },
-  "last_updated": "2026-11-24T03:55:22.803986"
+  "last_updated": "2026-11-25T02:12:05.693843"
 }
